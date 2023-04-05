@@ -11,6 +11,7 @@
     - [Container](#tetragon-Container)
     - [CreateContainer](#tetragon-CreateContainer)
     - [CreateContainer.AnnotationsEntry](#tetragon-CreateContainer-AnnotationsEntry)
+    - [Credentials](#tetragon-Credentials)
     - [GetHealthStatusRequest](#tetragon-GetHealthStatusRequest)
     - [GetHealthStatusResponse](#tetragon-GetHealthStatusResponse)
     - [HealthStatus](#tetragon-HealthStatus)
@@ -242,6 +243,33 @@ https://github.com/opencontainers/runtime-spec/blob/main/config.md#createcontain
 
 
 
+<a name="tetragon-Credentials"></a>
+
+### Credentials
+Task credentials
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| uid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | real UID of the task |
+| gid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | real GID of the task |
+| suid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | saved UID of the task |
+| sgid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | saved GID of the task |
+| euid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | effective UID of the task |
+| egid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | effective GID of the task |
+| fsuid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | UID for VFS ops |
+| fsgid | [google.protobuf.UInt32Value](#google-protobuf-UInt32Value) |  | GID for VFS ops |
+| effective | [CapabilitiesType](#tetragon-CapabilitiesType) | repeated | The capabilities that the task can actually use |
+| permitted | [CapabilitiesType](#tetragon-CapabilitiesType) | repeated | permitted capabilities |
+| bounding_set | [CapabilitiesType](#tetragon-CapabilitiesType) | repeated | capability bounding set |
+| inheritable | [CapabilitiesType](#tetragon-CapabilitiesType) | repeated | capabilities inherited by task children |
+| userns | [KprobeUserNamespace](#tetragon-KprobeUserNamespace) |  | user_ns where the creds are relative to. Last field |
+
+
+
+
+
+
 <a name="tetragon-GetHealthStatusRequest"></a>
 
 ### GetHealthStatusRequest
@@ -391,7 +419,7 @@ https://github.com/opencontainers/runtime-spec/blob/main/config.md#createcontain
 <a name="tetragon-KprobeCred"></a>
 
 ### KprobeCred
-
+Use Credentials instead of this one
 
 
 | Field | Type | Label | Description |

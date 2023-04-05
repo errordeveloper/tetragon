@@ -155,10 +155,28 @@ message KprobeTruncatedBytes {
 	uint64 orig_size = 2;
 }
 
+// Use Credentials instead of this one
 message KprobeCred {
     repeated CapabilitiesType permitted = 1;
     repeated CapabilitiesType effective = 2;
     repeated CapabilitiesType inheritable = 3;
+}
+
+// Task credentials
+message Credentials {
+    google.protobuf.UInt32Value uid = 1; /* real UID of the task */
+    google.protobuf.UInt32Value gid = 2; /* real GID of the task */
+    google.protobuf.UInt32Value suid = 3; /* saved UID of the task */
+    google.protobuf.UInt32Value sgid = 4; /* saved GID of the task */
+    google.protobuf.UInt32Value euid = 5; /* effective UID of the task */
+    google.protobuf.UInt32Value egid = 6; /* effective GID of the task */
+    google.protobuf.UInt32Value fsuid = 7; /* UID for VFS ops */
+    google.protobuf.UInt32Value fsgid = 8; /* GID for VFS ops */
+    repeated CapabilitiesType effective = 15; /* The capabilities that the task can actually use */
+    repeated CapabilitiesType permitted = 16; /* permitted capabilities */
+    repeated CapabilitiesType bounding_set = 17; /* capability bounding set */
+    repeated CapabilitiesType inheritable = 18; /* capabilities inherited by task children */
+    KprobeUserNamespace userns = 50; /* user_ns where the creds are relative to. Last field */
 }
 
 message KprobeCapability {
